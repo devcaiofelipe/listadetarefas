@@ -18,6 +18,13 @@ module.exports = {
         defaultValue: false,
         allowNull: false
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
       date: {
         type: Sequelize.DATE,
         allowNull: false
