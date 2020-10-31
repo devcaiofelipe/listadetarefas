@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes';
+import './database/database';
 
 
 class App {
@@ -12,7 +13,7 @@ class App {
     this.server = express();
     this.server.listen(3000);
     this.server.use(express.json());
-  }
+  };
 
   routes() {
     this.server.use(routes);

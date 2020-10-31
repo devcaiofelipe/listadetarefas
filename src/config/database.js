@@ -1,5 +1,5 @@
 module.exports = {
-  username: 'root',
+  username: 'postgres',
   password: 'docker',
   database: 'todolist',
   host: '127.0.0.1',
