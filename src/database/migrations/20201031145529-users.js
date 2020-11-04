@@ -17,13 +17,22 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       phone: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      code: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,
@@ -36,7 +45,7 @@ module.exports = {
     });
 },
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+down: async (queryInterface, Sequelize) => {
+  await queryInterface.dropTable('users');
   }
 };

@@ -1,6 +1,7 @@
 import express from 'express';
 import routes from './routes';
 import './database/database';
+require('dotenv').config();
 
 
 class App {
@@ -18,7 +19,6 @@ class App {
   routes() {
     this.server.use(routes);
   };
-
 };
 
 

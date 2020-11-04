@@ -1,11 +1,10 @@
 import { Router } from 'express';
+import UserController from './app/controllers/user-controller';
 
 const routes = new Router();
 
 
-routes.get('/', (req, res) => {
-  return res.send('Hello World');
-})
-
+routes.post('/user/register', UserController.store);
+routes.get('/user/confirm/:userId', UserController.confirmPhone);
 
 export default routes;
