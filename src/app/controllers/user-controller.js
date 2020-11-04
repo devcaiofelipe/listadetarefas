@@ -2,7 +2,7 @@ import User from '../models/user-model';
 import * as Yup from 'yup';
 import phoneCodeGenerator from '../utils/phone-code-generator';
 import bcrypt from 'bcrypt';
-import { TextMessageService } from 'comtele-sdk';
+import SMS from '../services/code-phone';
 
 
 export default new class UserController {
@@ -31,18 +31,8 @@ export default new class UserController {
 
     const user = await User.create({ first_name: first_name, last_name: last_name, password: passwordHash, phone: phone, code: userCode });
 
-    const textMessageService = new TextMessageService(process.env.API_KEY);
-    
-    textMessageService.send(user.id,
-      `Ola ${user.first_name} ${user.last_name} aqui esta seu codigo de verificacao: ${user.code}`, [`${user.phone}`],
-      (result) => {console.log(result)});
+    SMS.sendMessage({user});
     
     return res.json(user);
-  };
-
-  async confirmPhone(req, res) {
-    const userId = req.params.userId;
-    console.log(userId);
-    return res.json({ ok: true })
   };
 };
