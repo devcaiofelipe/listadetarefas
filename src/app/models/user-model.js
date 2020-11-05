@@ -18,6 +18,9 @@ export default class User extends Model {
       },
       code: {
         type: DataTypes.STRING
+      },
+      active: {
+        type: DataTypes.BOOLEAN
       }
     }, { sequelize: connection });
   };
