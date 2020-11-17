@@ -38,9 +38,16 @@ export default new class UserController {
       code: userCode
     });
 
+    const { id } = user;
+    
     SMS.sendMessage({user});
     
-    return res.status(201).json(user);
+    return res.status(201).json({
+      id,
+      first_name,
+      last_name,
+      phone
+    });
   };
 
   async confirmPhone(req, res) {
@@ -52,7 +59,7 @@ export default new class UserController {
     });
 
     if(!schema.isValid(req.body)) {
-      return res.status(401).json({ info: "userId and phoneCode must be sendly" });
+      return res.status(401).json({ info: "User id and phone code must be sendly" });
     }; 
     
     const userExists = await User.findOne({ where:  { id: userId } })
@@ -65,8 +72,8 @@ export default new class UserController {
       return res.status(401).json({ error: "Invalid code" });
     };
 
-    const user = await User.update({ active: true }, { where: { id: userId } });
+    await User.update({ active: true }, { where: { id: userId } });
 
     return res.status(200).json({ message: "phone successfully verified" })
   };
-};
+};  
