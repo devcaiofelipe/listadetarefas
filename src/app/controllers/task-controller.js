@@ -1,4 +1,4 @@
-import { parseISO, isPast, isTomorrow, subDays, parse } from 'date-fns';
+import { parseISO, isPast, isTomorrow, subDays, format } from 'date-fns';
 import * as Yup from 'yup';
 import SMS from '../services/code-phone';
 import Task from '../models/task-model';
@@ -32,10 +32,11 @@ export default new class TaskController {
 
     const user = await User.findOne({ where: { id:req.userId }});
 
-    const dateMessage = subDays(date, 1);
-    console.log(dateMessage)
+    const dateMessage = subDays(parsedDate, 1);
     
-    SMS.sendScheduledMessage({user}, task, dateMessage);
+    const scheduledDate = format(dateMessage, 'yyyy-MM-dd');
+
+    SMS.sendScheduledMessage({user}, task, scheduledDate);
 
     return res.json(taskCreated);
   };

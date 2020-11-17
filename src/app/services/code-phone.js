@@ -15,7 +15,6 @@ export default new class SMS {
   };
 
   sendScheduledMessage({ user: user }, task, date) {
-    console.log(date);
     this.textMessageService.schedule(user.id,
       `${user.first_name}!! não se esqueça, você tem até amanhã para terminar a tarefa "${task}"`,
       `${date} 09:00:00.`,
