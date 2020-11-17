@@ -23,7 +23,7 @@ export default new class UserController {
     const phoneAlreadyExists = await User.findOne({ where: { phone: phone } });
 
     if(phoneAlreadyExists) {
-      return res.json({ error: "This phone already registered on our database" });
+      return res.status().json({ error: "This phone already registered on our database" });
     };
 
     const userCode = phoneCodeGenerator();
@@ -39,7 +39,7 @@ export default new class UserController {
     });
 
     const { id } = user;
-    
+
     SMS.sendMessage({user});
     
     return res.status(201).json({
