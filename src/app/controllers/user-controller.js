@@ -40,7 +40,7 @@ export default new class UserController {
 
     const { id } = user;
 
-    SMS.sendMessage({user});
+    //SMS.sendMessage({user});
     
     return res.status(201).json({
       id,
@@ -76,4 +76,29 @@ export default new class UserController {
 
     return res.status(200).json({ message: "phone successfully verified" })
   };
-};  
+
+  async update(req, res) {
+    if(req.body.phone || req.body.password) {
+      return res.status(401).json({
+        info: 'You cannot update your phone and password via this route. Try "/user/update/phone" for phone and "/user/update/password" to update password'
+      });
+    };
+
+    const user = await User.findByPk(req.userId);
+
+    if(!user) {
+      return res.status(400).json({ error: 'User not found' });
+    };
+    
+    const updatedUser = await user.update(req.body);
+
+    const { id, first_name, last_name } = updatedUser;
+
+    return res.json({ id, first_name, last_name });
+  };
+
+  async delete(req, res) {
+    await User.destroy({ where: { id:req.userId } });
+    return res.json({ info: 'User successfuly deleted' });
+  };
+};

@@ -36,8 +36,16 @@ export default new class TaskController {
     
     const scheduledDate = format(dateMessage, 'yyyy-MM-dd');
 
-    SMS.sendScheduledMessage({user}, task, scheduledDate);
+    //SMS.sendScheduledMessage({user}, task, scheduledDate);
 
     return res.json(taskCreated);
+  };
+
+  async index(req, res) {
+    const tasks = await Task.findAndCountAll({
+      where: { user_id:req.userId },
+      attributes: ['id', 'task', 'done', 'date']
+    });
+    return res.json(tasks);
   };
 }
