@@ -50,7 +50,7 @@ export default new class UserController {
     });
   };
 
-  async confirmPhone(req, res) {
+  async confirmUserPhone(req, res) {
     const { userId, phoneCode } = req.body; 
 
     const schema = Yup.object().shape({
