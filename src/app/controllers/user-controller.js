@@ -50,7 +50,7 @@ export default new class UserController {
     });
   };
 
-  async confirmUserPhone(req, res) {
+  async activeUser(req, res) {
     const { userId, phoneCode } = req.body; 
 
     const schema = Yup.object().shape({
@@ -72,7 +72,7 @@ export default new class UserController {
       return res.status(401).json({ error: "Invalid code" });
     };
 
-    await User.update({ active: true }, { where: { id: userId } });
+    await User.update({ active: true }, { where: { id: req.userId } });
 
     return res.status(200).json({ message: "phone successfully verified" })
   };
