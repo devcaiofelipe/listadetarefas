@@ -21,7 +21,10 @@ export default class User extends Model {
       },
       active: {
         type: DataTypes.BOOLEAN
-      }
+      },
+      avatar: {
+        type: DataTypes.STRING
+      },
     }, { sequelize: connection });
   };
 };

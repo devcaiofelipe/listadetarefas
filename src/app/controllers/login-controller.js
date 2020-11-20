@@ -20,7 +20,7 @@ export default new class LoginController {
     const userExists = await User.findOne({ where: { phone, active: true } });
     
     if(!userExists) {
-      return res.status(400).json({ error: 'User not found or not activated' });
+      return res.status(400).json({ error: 'User not registered or not activated' });
     };
 
     const passwordIsValid = await bcrypt.compare(password, userExists.password);
@@ -29,11 +29,16 @@ export default new class LoginController {
       return res.status(401).json({ info: 'Invalid password' });
     };
     
-    const { id } = userExists;
+    const { id, first_name, last_name, avatar } = userExists;
+
+    const url = `http://localhost:3000/${avatar}`
 
     const token = jwt.sign({ id }, jwtConfig.secret, { expiresIn:jwtConfig.expiresIn });
     return res.json({
-      info: 'Generated token',
+      id,
+      first_name,
+      last_name,
+      url,
       token
     });
   }; 
