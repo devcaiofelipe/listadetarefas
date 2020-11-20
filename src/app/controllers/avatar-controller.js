@@ -1,6 +1,9 @@
+import resizeImage from '../utils/resize-avatar-image';
+
+
 export default new class AvatarController {
   async store(req, res) {
-    console.log(req.file);
+    resizeImage(req.file.filename);
     return res.json(req.file);
   };
 };
