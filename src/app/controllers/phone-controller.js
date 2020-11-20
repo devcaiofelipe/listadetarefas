@@ -1,6 +1,7 @@
 import User from '../models/user-model';
 import * as Yup from 'yup';
 import phoneCodeGenerator from '../utils/phone-code-generator';
+import SMS from '../services/code-phone';
 
 
 
@@ -13,12 +14,23 @@ export default new class PhoneController {
     });
 
     if(!schema.isValid(req.body)) {
-      return res.status(401).json({ info: "User id and phone code must be sendly" });
+      return res.status(401).json({ info: "Phone must be sendly" });
     }; 
 
-    const phoneAlreadyExists = User.findOne({ where: { id: phone } });
+    const phoneAlreadyExists = User.findOne({ where: { phone } });
 
+    if(phoneAlreadyExists) {
+      return res.status(401).json({ info: 'Phone already registered' });
+    };
 
-    return res.json({ ok: true });
+    const code = phoneCodeGenerator();
+
+    const userWithCodeUpdated = await User.update({ code }, { where: { id:req.userId } });
+
+    userWithCodeUpdated.phone = phone;
+
+    SMS.sendMessage({ userWithCodeUpdated });
+
+    return res.json({ info: 'Code phone ' });
   };
 };

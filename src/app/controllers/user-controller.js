@@ -98,7 +98,7 @@ export default new class UserController {
   };
 
   async delete(req, res) {
-    await User.destroy({ where: { id:req.userId } });
+    await User.update({ active: false }, { where: { id:req.userId } });
     return res.json({ info: 'User successfuly deleted' });
   };
 };
