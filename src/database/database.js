@@ -5,6 +5,8 @@ import Task from '../app/models/task-model';
 
 const models = [User, Task];
 
+
+
 export default new class Database {
   constructor() {
     this.initPostgres();
@@ -15,7 +17,8 @@ export default new class Database {
     this.connection = new Sequelize(databaseConfig);
   };
 
-  initModels() {;
+  initModels() {
     models.forEach(models => models.init(this.connection));
+    models.forEach(model => model.associate && model.associate(this.connection.models));
   };
 };

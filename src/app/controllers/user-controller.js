@@ -80,7 +80,7 @@ export default new class UserController {
   async update(req, res) {
     if(req.body.phone || req.body.password) {
       return res.status(401).json({
-        info: 'You cannot update your phone and password via this route. Try "/user/update/phone" for phone and "/user/update/password" to update password'
+        info: 'You cannot update your password via this route. Try "/user/update/password" to update password'
       });
     };
 

@@ -27,4 +27,7 @@ export default class User extends Model {
       },
     }, { sequelize: connection });
   };
+  static associate(models) {
+    this.hasMany(models.User, { foreignKey: 'id', as: 'user' });
+  };
 };

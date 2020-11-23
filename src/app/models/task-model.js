@@ -1,7 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 
 
-export default class Task extends Model{
+
+export default class Task extends Model {
   static init(connection) {
     super.init({
       task: {
@@ -17,5 +18,9 @@ export default class Task extends Model{
         type: DataTypes.DATE,
       }
     }, { sequelize: connection });
+  };
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
   };
 };

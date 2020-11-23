@@ -10,14 +10,14 @@ export default new class TaskController {
   async store(req, res) {
     const schema = Yup.object().shape({
       task: Yup.string().required(),
-      date: Yup.string().required()
+      expirationDate: Yup.string().required()
     });
 
     if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Task and expiration date must be submitted'});
     };
 
-    const { task, date } = req.body;
+    const { task, expirationDate } = req.body;
     const parsedDate = parseISO(date);
     
     if(isPast(parsedDate)) {
@@ -42,10 +42,30 @@ export default new class TaskController {
   };
 
   async index(req, res) {
-    const tasks = await Task.findAndCountAll({
+    const allTasks = await Task.findAndCountAll({
       where: { user_id:req.userId },
       attributes: ['id', 'task', 'done', 'date']
     });
-    return res.json(tasks);
+    return res.json(allTasks);
+  };
+
+  async update(req, res) {
+    const { taskId } = req.body;
+    const task = await Task.findOne({ where: { id: taskId },
+      include: { model: User, as: 'user',
+      attributes: ['id']
+    }});
+    
+    if(task.user.id !== req.userId) {
+      return res.status(401).json({
+        error: 'You can only update your own tasks'
+      });
+    };
+
+    await Task.update({ done: true }, { where: { id: taskId }});
+    
+    return res.json({
+      info: 'Task updated'
+    });
   };
 }

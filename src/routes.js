@@ -24,6 +24,7 @@ routes.post('/user/avatar', loginRequired, upload.single('avatar'), AvatarContro
 
 routes.post('/task/create', loginRequired, TaskController.store);
 routes.get('/task/all', loginRequired, TaskController.index);
+routes.put('/task/update', loginRequired, TaskController.update);
 
 
 export default routes;
