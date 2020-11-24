@@ -99,6 +99,7 @@ export default new class UserController {
 
   async delete(req, res) {
     await User.update({ active: false }, { where: { id:req.userId } });
+    
     return res.json({ info: 'User successfuly deleted' });
   };
 };
