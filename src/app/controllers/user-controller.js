@@ -7,14 +7,15 @@ import SMS from '../services/code-phone';
 
 
 export default new class UserController {
-  async store(req, res) {
-    const { first_name, last_name, password, phone } = req.body; 
+  async store(req, res) { 
     const schema = Yup.object().shape({
       first_name: Yup.string().required(),
       last_name: Yup.string().required(),
       password: Yup.string().required().min(6),
       phone: Yup.string().required().min(11).max(11)
     });
+
+    const { first_name, last_name, password, phone } = req.body;
     
     if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails'});
