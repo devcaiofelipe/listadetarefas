@@ -1,8 +1,8 @@
+import './bootstrap';
 import express from 'express';
 import routes from './routes';
 import { resolve } from 'path';
 import './database/database';
-require('dotenv').config();
 
 
 class App {
@@ -13,7 +13,6 @@ class App {
 
   init() {
     this.server = express();
-    this.server.listen(3000);
     this.server.use(express.json());
     this.server.use(express.static(resolve(__dirname, 'uploads', 'avatars')));
   };
@@ -24,4 +23,4 @@ class App {
 };
 
 
-const app = new App();
+export default new App().server;

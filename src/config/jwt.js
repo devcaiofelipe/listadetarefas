@@ -1,4 +1,6 @@
+require('dotenv').config();
+
 export default {
-  secret: 'todolist',
-  expiresIn: '1d'
+  secret: process.env.JWT_SECRET,
+  expiresIn: process.env.EXPIRES_IN
 }

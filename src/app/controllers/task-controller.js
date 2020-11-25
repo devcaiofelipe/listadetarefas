@@ -18,7 +18,7 @@ export default new class TaskController {
     };
 
     const { task, expirationDate } = req.body;
-    const parsedDate = parseISO(date);
+    const parsedDate = parseISO(expirationDate);
     
     if(isPast(parsedDate)) {
       return res.status(401).json({ info: 'Past dates are invalid' });
@@ -28,7 +28,7 @@ export default new class TaskController {
       return res.status(401).json({ info: 'Tasks need to be longer than two days' });
     };
 
-    const taskCreated = await Task.create({ task, date, user_id:req.userId });
+    const taskCreated = await Task.create({ task, date:expirationDate, user_id:req.userId });
 
     const user = await User.findOne({ where: { id:req.userId }});
 
