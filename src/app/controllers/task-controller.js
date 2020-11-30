@@ -1,6 +1,6 @@
 import { parseISO, isPast, isTomorrow, subDays, format } from 'date-fns';
 import * as Yup from 'yup';
-import SMS from '../services/code-phone';
+import SMS from '../jobs/code-phone';
 import Task from '../models/task-model';
 import User from '../models/user-model';
 
@@ -18,6 +18,7 @@ export default new class TaskController {
     };
 
     const { task, expirationDate } = req.body;
+    
     const parsedDate = parseISO(expirationDate);
     
     if(isPast(parsedDate)) {

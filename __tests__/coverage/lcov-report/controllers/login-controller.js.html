@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.11% </span>
+                <span class="strong">78.26% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/45</span>
+                <span class='fraction'>36/46</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">77.78% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/7</span>
+                <span class='fraction'>7/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.11% </span>
+                <span class="strong">78.26% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/45</span>
+                <span class='fraction'>36/46</span>
             </div>
         
             
@@ -101,7 +101,8 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -114,8 +115,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -130,22 +131,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import jwt from 'jsonwebtoken';
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span></td><td class="text"><pre class="prettyprint lang-js">import jwt from 'jsonwebtoken';
 import User from '../models/user-model';
 import * as Yup from 'yup';
 import bcrypt from 'bcrypt';
@@ -154,15 +156,16 @@ import jwtConfig from '../<span class="branch-0 cbranch-no" title="branch not co
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >export default new class LoginController {</span>
 <span class="cstat-no" title="statement not covered" >  async store(req, res) {</span>
-<span class="cstat-no" title="statement not covered" >    const { phone, password } = req.body;</span>
 <span class="cstat-no" title="statement not covered" >    const schema = Yup.object().shape({</span>
-      phone: Yup.string().required().min(11).max(11),
+<span class="cstat-no" title="statement not covered" >      phone: Yup.string().required().min(11).max(11),</span>
       password: Yup.string().required().min(6) 
     });
     
-    if(!(await schema.isValid({ phone, password }))) {
+    if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ info: 'Phone and password must be sendly'});
     };
+&nbsp;
+    const { phone, password } = req.body;
     
     const userExists = await User.findOne({ where: { phone, active: true } });
     
@@ -173,30 +176,30 @@ import jwtConfig from '../<span class="branch-0 cbranch-no" title="branch not co
     const passwordIsValid = await bcrypt.compare(password, userExists.password);
 &nbsp;
     if(!passwordIsValid) {
-      return res.status(401).json({ i<span class="fstat-no" title="function not covered" >nfo: 'Invalid password' });</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >    </span>
-<span class="cstat-no" title="statement not covered" >    const { id, first_name, last_name, avatar } = userExists;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const url = `http://localhost:3000/${avatar}`</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    const token = jwt.sign({ id }, jwtConfig.secret, { expiresIn:jwtConfig.expiresIn });</span>
+      return res.status(401).json({ info: 'Invalid password' });
+    };
+    
+    const { id, first_name, last_name, avatar } = userExists;
+&nbsp;
+    const url = `http://localhost:3000/${avatar}`
+&nbsp;
+    const token = jwt.sign({ id }, jwtConfig.secret, { expiresIn:jwtConfig.ex<span class="branch-0 cbranch-no" title="branch not covered" >piresIn });</span>
 <span class="cstat-no" title="statement not covered" >    return res.json({</span>
 <span class="cstat-no" title="statement not covered" >      id,</span>
 <span class="cstat-no" title="statement not covered" >      first_name,</span>
 <span class="cstat-no" title="statement not covered" >      last_name,</span>
-<span class="cstat-no" title="statement not covered" >      url,</span>
-<span class="cstat-no" title="statement not covered" >      token</span>
-<span class="cstat-no" title="statement not covered" >    });</span>
-<span class="cstat-no" title="statement not covered" >  }; </span>
-<span class="cstat-no" title="statement not covered" >};</span></pre></td></tr></table></pre>
+      url,
+      token
+    });
+  }; 
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Nov 25 2020 16:19:06 GMT-0300 (GMT-03:00)
+                at Mon Nov 30 2020 15:54:55 GMT-0300 (GMT-03:00)
             </div>
         </div>
         <script src="../prettify.js"></script>

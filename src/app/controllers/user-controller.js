@@ -2,7 +2,7 @@ import User from '../models/user-model';
 import * as Yup from 'yup';
 import phoneCodeGenerator from '../utils/phone-code-generator';
 import bcrypt from 'bcrypt';
-import SMS from '../services/code-phone';
+import SMS from '../jobs/code-phone';
 
 
 
@@ -15,11 +15,11 @@ export default new class UserController {
       phone: Yup.string().required().min(11).max(11)
     });
 
-    const { first_name, last_name, password, phone } = req.body;
-    
     if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails'});
     };
+
+    const { first_name, last_name, password, phone } = req.body;
 
     const phoneAlreadyExists = await User.findOne({ where: { phone: phone } });
 
@@ -52,8 +52,6 @@ export default new class UserController {
   };
 
   async activeUser(req, res) {
-    const { userId, phoneCode } = req.body; 
-
     const schema = Yup.object().shape({
       userId: Yup.number().required(),
       phoneCode: Yup.string().required().min(6).max(6)
@@ -62,6 +60,8 @@ export default new class UserController {
     if(!schema.isValid(req.body)) {
       return res.status(401).json({ info: "User id and phone code must be sendly" });
     }; 
+
+    const { userId, phoneCode } = req.body;
     
     const userExists = await User.findOne({ where:  { id: userId } })
 
@@ -73,7 +73,7 @@ export default new class UserController {
       return res.status(401).json({ error: "Invalid code" });
     };
 
-    await User.update({ active: true }, { where: { id: req.userId } });
+    await User.update({ active: true }, { where: { id: userId } });
 
     return res.status(200).json({ message: "phone successfully verified" })
   };
@@ -85,7 +85,7 @@ export default new class UserController {
       });
     };
 
-    const user = await User.findByPk(req.userId);
+    const user = await User.findOne({ where: { id:req.userId, active:true }});
 
     if(!user) {
       return res.status(400).json({ error: 'User not found' });

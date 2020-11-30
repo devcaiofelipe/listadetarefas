@@ -7,11 +7,22 @@ import TaskController from './app/controllers/task-controller';
 import PasswordController from './app/controllers/password-controller';
 import AvatarController from './app/controllers/avatar-controller';
 import loginRequired from './app/middleware/loginRequired';
+import User from './app/models/user-model';
 
 
 const routes = new Router();
 
 const upload = multer(multerConfig);
+
+
+/*
+  fake route to get a user's phone code and test the application
+*/
+routes.post('/fake/to/get/one/user/:id', async (req, res) => {
+  const user = await User.findByPk(req.params.id);
+  return res.json(user);
+}),
+
 
 
 routes.post('/user/register', UserController.store);

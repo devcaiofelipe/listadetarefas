@@ -7,15 +7,16 @@ import jwtConfig from '../../config/jwt';
 
 export default new class LoginController {
   async store(req, res) {
-    const { phone, password } = req.body;
     const schema = Yup.object().shape({
       phone: Yup.string().required().min(11).max(11),
       password: Yup.string().required().min(6) 
     });
     
-    if(!(await schema.isValid({ phone, password }))) {
+    if(!(await schema.isValid(req.body))) {
       return res.status(400).json({ info: 'Phone and password must be sendly'});
     };
+
+    const { phone, password } = req.body;
     
     const userExists = await User.findOne({ where: { phone, active: true } });
     
