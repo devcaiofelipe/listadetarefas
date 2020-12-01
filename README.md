@@ -10,7 +10,7 @@ O status das tarefas podem ser alterados para Pendente ou Finalizado.
 Testes
 =
 
-Escrevi os teste de integração usando a biblioteca jest, ainda está faltando alguns teste que ainda estou finalizando :)
+Escrevi os teste de integração usando a biblioteca jest, está faltando alguns teste que ainda estou finalizando :)
 
 Bibliotecas
 =
