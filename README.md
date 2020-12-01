@@ -1,4 +1,5 @@
 LISTA DE TAREFAS COM NODEJS
+=
 
 Esta é minha lista de tarefas, desenvolvi com intuíto de por em prática meus conhecimentos de programação backend.
 Nela você pode cadastrar seu telefone celular(informando DDD, 9 antes e o número), com isso você irá receber um SMS de confirmação para ativar sua conta.
