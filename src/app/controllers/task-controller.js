@@ -37,7 +37,7 @@ export default new class TaskController {
     
     const scheduledDate = format(dateMessage, 'yyyy-MM-dd');
 
-    //SMS.sendScheduledMessage({user}, task, scheduledDate);
+    SMS.sendScheduledMessage({user}, task, scheduledDate);
 
     return res.json(taskCreated);
   };
