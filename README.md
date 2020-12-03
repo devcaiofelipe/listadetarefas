@@ -16,6 +16,7 @@ Bibliotecas
 =
 - Express -> para tratar as requisições http.
 - PostgreSQL -> para armazenar os usuários e as respectivas tarefas.
+- Redis -> para fazer cache das tarefas do usuário
 - Sqlit3 -> Para rodar os testes automatizados.
 - Comtele-sdk -> Para enviar os SMS de confirmação de usuário e lembrete do tempo das tarefas.
 - Sequelize -> ORM para realizar as consultas no banco de dados.
@@ -25,6 +26,7 @@ Bibliotecas
 - Jimp -> Para redimensionar as fotos de perfil.
 - Jsonwebtoken -> Para implementar a autenticação JWT.
 - Bcrypt -> Para gerar o hash da senha do usuário.
+- ioredis -> como client do redis
 
 Como baixar e usar?
 =
