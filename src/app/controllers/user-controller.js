@@ -41,7 +41,7 @@ export default new class UserController {
 
     const { id } = user;
 
-    SMS.sendMessage({user});
+    //SMS.sendMessage({user});
     
     return res.status(201).json({
       id,

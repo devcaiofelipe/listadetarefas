@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import SMS from '../jobs/code-phone';
 import Task from '../models/task-model';
 import User from '../models/user-model';
-
+import Cache from '../../lib/Cache';
 
 
 export default new class TaskController {
@@ -37,16 +37,29 @@ export default new class TaskController {
     
     const scheduledDate = format(dateMessage, 'yyyy-MM-dd');
 
-    SMS.sendScheduledMessage({user}, task, scheduledDate);
+    //SMS.sendScheduledMessage({user}, task, scheduledDate);
+
+    await Cache.invalidate(`${req.userId}`)
 
     return res.json(taskCreated);
   };
 
   async index(req, res) {
+    const cached = await Cache.get(`${req.userId}`);
+
+    if(cached) {
+      console.log(cached)
+      return res.json(cached);
+    };
+
+
     const allTasks = await Task.findAndCountAll({
       where: { user_id:req.userId },
       attributes: ['id', 'task', 'done', 'date']
     });
+
+    await Cache.set(`${req.userId}`, allTasks);
+
     return res.json(allTasks);
   };
 
@@ -64,7 +77,9 @@ export default new class TaskController {
     };
 
     await Task.update({ done: true }, { where: { id: taskId }});
-    
+
+    await Cache.invalidate(`${req.userId}`)
+  
     return res.json({
       info: 'Task updated'
     });
