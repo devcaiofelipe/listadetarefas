@@ -17,7 +17,7 @@ Bibliotecas
 - Express -> para tratar as requisições http.
 - PostgreSQL -> para armazenar os usuários e as respectivas tarefas.
 - Redis -> para fazer cache das tarefas do usuário e informações do rate limit
-- Sqlit3 -> Para rodar os testes automatizados.
+- Sqlite3 -> Para rodar os testes automatizados.
 - Comtele-sdk -> Para enviar os SMS de confirmação de usuário e lembrete do tempo das tarefas.
 - Sequelize -> ORM para realizar as consultas no banco de dados.
 - Date-fns -> para manipulação das datas.
