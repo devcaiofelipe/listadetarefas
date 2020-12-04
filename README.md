@@ -14,22 +14,22 @@ Escrevi os teste de integração usando a biblioteca jest, está faltando alguns
 
 Bibliotecas
 =
-- Express -> para tratar as requisições http.
-- PostgreSQL -> para armazenar os usuários e as respectivas tarefas.
-- Redis -> para fazer cache das tarefas do usuário e informações do rate limit.
-- Sqlit3 -> Para rodar os testes automatizados.
-- Comtele-sdk -> Para enviar os SMS de confirmação de usuário e lembrete do prazo final da tarefa.
-- Sequelize -> ORM para realizar as consultas no banco de dados.
-- Date-fns -> para manipulação das datas.
-- Multer -> Para fazer upload da foto de perfil do usuário.
-- Yup -> Para validação de dados de entrada no backend.
-- Jimp -> Para redimensionar as fotos de perfil.
-- Jsonwebtoken -> Para implementar a autenticação JWT.
-- Bcrypt -> Para gerar o hash da senha do usuário.
-- ioredis -> como client do redis.
-- express-brute -> para bloquear spam de requisições em algumas rotas.
-- express-helmet -> para aumentar a segurança da aplicação.
-- express-rate-limit -> para setar uma configuração e evitar excesso de requisições indevidas e maliciosas ao backend.
+- Express > para tratar as requisições http.
+- PostgreSQL > para armazenar os usuários e as respectivas tarefas.
+- Redis > para fazer cache das tarefas do usuário e informações do rate limit.
+- Sqlit3 > Para rodar os testes automatizados.
+- Comtele-sdk > Para enviar os SMS de confirmação de usuário e lembrete do prazo final da tarefa.
+- Sequelize > ORM para realizar as consultas no banco de dados.
+- Date-fns > para manipulação das datas.
+- Multer > Para fazer upload da foto de perfil do usuário.
+- Yup > Para validação de dados de entrada no backend.
+- Jimp > Para redimensionar as fotos de perfil.
+- Jsonwebtoken > Para implementar a autenticação JWT.
+- Bcrypt > Para gerar o hash da senha do usuário.
+- ioredis > como client do redis.
+- express-brute > para bloquear spam de requisições em algumas rotas.
+- express-helmet > para aumentar a segurança da aplicação.
+- express-rate-limit > para setar uma configuração e evitar excesso de requisições indevidas e maliciosas ao backend.
 
 Como baixar e usar?
 =
