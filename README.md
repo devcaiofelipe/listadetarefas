@@ -34,6 +34,6 @@ Bibliotecas
 Como baixar e usar?
 =
 - Você pode clonar a aplicação com "https://github.com/devcaiofelipe/todo-list.git"
-- Rodar o comando npm install, para instalar todas as dependencias do projeto(Certifique-se de ter o nodejs e o redis instalado).
+- Rodar o comando npm install, para instalar todas as dependencias do projeto(**Certifique-se de ter o nodejs e o redis instalado**).
 - Rodar o comando npm start, para subir o servidor
 - Você vai precisar criar uma conta na Comtele pegar o API_KEY que eles forneçem, e alterar no arquivo ".env" o valor de API_KEY, para a key forneçida por eles.
