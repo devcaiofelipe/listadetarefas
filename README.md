@@ -16,7 +16,7 @@ Bibliotecas
 =
 - Express -> para tratar as requisições http.
 - PostgreSQL -> para armazenar os usuários e as respectivas tarefas.
-- Redis -> para fazer cache das tarefas do usuário
+- Redis -> para fazer cache das tarefas do usuário e informações do rate limit
 - Sqlit3 -> Para rodar os testes automatizados.
 - Comtele-sdk -> Para enviar os SMS de confirmação de usuário e lembrete do tempo das tarefas.
 - Sequelize -> ORM para realizar as consultas no banco de dados.
@@ -27,10 +27,13 @@ Bibliotecas
 - Jsonwebtoken -> Para implementar a autenticação JWT.
 - Bcrypt -> Para gerar o hash da senha do usuário.
 - ioredis -> como client do redis
+- express-brute -> para bloquear spam de requisições em algumas rotas.
+- express-helmet -> para evitar crossite scripting
+- express-rate-limit -> para setar uma configuração e evitar excesso de requisições indevidas ao backend.
 
 Como baixar e usar?
 =
 - Você pode clonar a aplicação com "https://github.com/devcaiofelipe/todo-list.git"
-- Rodar o comando npm install, para instalar todas as dependencias do projeto(Certifique-se de ter o nodejs instalado).
+- Rodar o comando npm install, para instalar todas as dependencias do projeto(Certifique-se de ter o nodejs e o redis instalado).
 - Rodar o comando npm start, para subir o servidor
 - Você vai precisar criar uma conta na Comtele pegar o API_KEY que eles forneçem, e alterar no arquivo ".env" o valor de API_KEY, para a key forneçida por eles.

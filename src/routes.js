@@ -16,6 +16,13 @@ const routes = new Router();
 
 const upload = multer(multerConfig);
 
+const bruteStore = new BruteRedis({
+  host:process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT
+});
+
+const bruteForce = new Brute(bruteStore);
+
 
 /*
   fake route to get a user's phone code and test the application
@@ -29,7 +36,7 @@ routes.post('/fake/to/get/one/user/:id', async (req, res) => {
 
 routes.post('/user/register', UserController.store);
 routes.post('/user/active', UserController.activeUser);
-routes.post('/user/login', LoginController.store);
+routes.post('/user/login', bruteForce.prevent, LoginController.store);
 routes.put('/user/delete', loginRequired, UserController.delete);
 routes.put('/user/update', loginRequired, UserController.update);
 routes.put('/user/update/password', loginRequired, PasswordController.update);

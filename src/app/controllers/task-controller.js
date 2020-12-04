@@ -48,7 +48,6 @@ export default new class TaskController {
     const cached = await Cache.get(`${req.userId}`);
 
     if(cached) {
-      console.log(cached)
       return res.json(cached);
     };
 
