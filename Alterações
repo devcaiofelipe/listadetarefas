@@ -1,0 +1,3 @@
+if (resp.data_agendamento) {
+            resp.data_agendamento = utilsComponent.fixTimeZone(timezone, resp.data_agendamento);
+        } -> order controller linha 163

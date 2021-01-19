@@ -1,0 +1,27 @@
+================================================
+URL PARA ESTIMAR TEMPO PRODUÇÃO/DESENVOLVIMENTO  
+================================================ 
+const resp = http.getAsync(
+            'https://' + (options.url ? options.url + '.' : '')
+            + 'maisentregas.com/apiV1/orcamento'
+            + '?cidade=' + encodeURIComponent(cityIdentify)
+            + (options.client ? '&cliente=' + encodeURIComponent(options.client) : '')
+            + (options.cupom ? '&cupom=' + encodeURIComponent(options.cupom) : '')
+            + '&' + locations.join('&')
+        );
+
+================================================
+URL PARA ESTIMAR TEMPO DESENVOLVIMENTO  
+================================================ 
+const resp = http.getAsync(
+            'http://localhost:8080/motoboy/apiV1/orcamento'
+            + '?cidade=' + encodeURIComponent(cityIdentify)
+            + (options.client ? '&cliente=' + encodeURIComponent(options.client) : '')
+            + (options.cupom ? '&cupom=' + encodeURIComponent(options.cupom) : '')
+            + '&' + locations.join('&'));
+
+
+============================
+CONFIG Config.groovy
+============================
+Alterando api.url de 'http://192.168.2.102:3000' para 'http://localhost:3000'
